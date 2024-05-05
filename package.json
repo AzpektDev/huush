@@ -1,0 +1,27 @@
+{
+  "name": "huush",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@skyra/timestamp": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "git-rev-sync": "^3.0.2",
+    "lambert-server": "^1.2.12",
+    "mongoose": "^8.3.3",
+    "path": "^0.12.7",
+    "prettier-plugin-organize-imports": "^3.2.4"
+  },
+  "devDependencies": {
+    "@types/git-rev-sync": "^2.0.2",
+    "@types/node": "^20.12.8"
+  }
+}
