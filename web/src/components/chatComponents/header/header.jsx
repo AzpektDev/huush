@@ -1,11 +1,12 @@
-import React from "react";
-
 const Header = () => {
-    return (
-        <div>
-        <h1>Header</h1>
-        </div>
-    );
-}
+  return (
+    <header>
+      <div className="user">{/* map */}</div>
+      <div className="securit-button">
+        <button>Włącz tryb bezpieczny</button>
+      </div>
+    </header>
+  );
+};
 
 export default Header;
