@@ -1,13 +1,13 @@
 let begin = Date.now();
 let end;
 
-import { existsSync, readFileSync, writeFileSync } from "fs";
+import { existsSync } from "fs";
 import { branch, date, long, short } from "git-rev-sync";
 import os from "os";
 import { join } from "path";
-import API from "./server";
-import { Console } from "../util/Console";
-import { relativeTime } from "../util/Date";
+import { API } from "./Server";
+import { Console } from "./util/Console";
+import { relativeTime } from "./util/Date";
 
 const console = new Console();
 const configExists = existsSync(join(__dirname + "/../" + "config.json"));
@@ -22,12 +22,12 @@ try {
   console.warn("Failed to get thread count! Using 1...");
 }
 
-console.default("██╗  ██╗██╗   ██╗██╗   ██╗███████╗██╗  ██╗")
-console.default("██║  ██║██║   ██║██║   ██║██╔════╝██║  ██║")
-console.default("███████║██║   ██║██║   ██║███████╗███████║")
-console.default("██╔══██║██║   ██║██║   ██║╚════██║██╔══██║")
-console.default("██║  ██║╚██████╔╝╚██████╔╝███████║██║  ██║")
-console.default("╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝")
+console.default("██╗  ██╗██╗   ██╗██╗   ██╗███████╗██╗  ██╗");
+console.default("██║  ██║██║   ██║██║   ██║██╔════╝██║  ██║");
+console.default("███████║██║   ██║██║   ██║███████╗███████║");
+console.default("██╔══██║██║   ██║██║   ██║╚════██║██╔══██║");
+console.default("██║  ██║╚██████╔╝╚██████╔╝███████║██║  ██║");
+console.default("╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝");
 console.default(`huush | ${branch()} - ${short() || "unknown"} | Published ${relativeDate || "unknown time ago"}`);
 console.default(`Environment: ${process.env.NODE_ENV || "development"}`); // NODE_ENV=XXXXX ts-node src/index.ts <-- set environment
 console.default(`Commit Hash: ${long() || "unknown"}`);
