@@ -17,21 +17,8 @@ export class Chat extends BaseClass {
   })
   author?: User;
     
-  @ManyToMany(() => User, user => user.chats, {
-    cascade: true
-  })
-  @JoinTable({
-    name: "chat_participants", // Name of the join table
-    joinColumn: {
-      name: "chat_id",
-      referencedColumnName: "id"
-    },
-    inverseJoinColumn: {
-      name: "user_id",
-      referencedColumnName: "id"
-    }
-  })
-  participants?: User[];
+  @Column("text", { array: true })
+  participant_ids?: string[];  // Comma-separated list of user IDs
 
   @OneToMany(() => Message, message => message.chat)
   messages?: Message[];
@@ -45,9 +32,12 @@ export class Chat extends BaseClass {
     if (!this.id) this.id = Snowflake.generate();
   }
 
-  static async new({ req }: { req: Request }) {
+  static async new({ participants, req }: { participants: string[]; req: Request }) {    
+    // const participantIds = participants.join(',');
+
     const chat = Chat.create({
       author_id: req.user.id,
+      participant_ids: participants,
       created_at: new Date(),
     });
 
