@@ -1,9 +1,14 @@
 import bcrypt from "bcrypt";
 import { Request, Response, Router } from "express";
-// import config from "../../../config.json";
 import { User } from "../../entities/User";
+import { sendOTP } from "../../util/SMS";
+import { OTP } from "../../entities/OTP";
 
 const router: Router = Router();
+
+function generateOTP() {
+  return (Math.floor(100000 + Math.random() * 900000)).toString();
+}
 
 interface RegisterSchema {
   username: string;
@@ -47,10 +52,17 @@ router.post("/", async (req: Request, res: Response) => {
   // Hash the password
   password = await bcrypt.hash(password, 10);
 
-  // Create the user
   const user = await User.registerUser({ username, password, phone, req });
-  // sendSMS(user.phone.toString(), "budzet ucierpial o 0,12zl. womp womp");
-  // sendSMS('+48512658925', 'JSIOJOIFDSD');
+  
+  const onetimePassword = generateOTP();
+  await OTP.create({
+    user_id: user.id,
+    phone_number: user.phone,
+    otp: onetimePassword,
+    sent_at: new Date(),
+  }).save();
+
+  await sendOTP(user.phone, onetimePassword);
 
   return res.status(200).send({
     message: "Successfully registered",
