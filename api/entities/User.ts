@@ -53,7 +53,7 @@ export class User extends BaseClass {
     if (!this.id) this.id = Snowflake.generate();
   }
 
-  static async registerUser({ username, phone, password, req }: { username: string; password: string; email: string; phone: string; req?: Request }) {
+  static async registerUser({ username, phone, password, req }: { username: string; password: string; phone: string; req?: Request }) {
     username = trimSpecial(username);
 
     // const settings = UserSettings.create();
