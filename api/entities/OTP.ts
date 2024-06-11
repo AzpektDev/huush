@@ -9,7 +9,7 @@ export class OTP extends BaseClass {
   @Index()
   user_id?: string;
 
-  @JoinColumn({ name: "author_id", referencedColumnName: "id" })
+  @JoinColumn({ name: "user_id", referencedColumnName: "id" })
   @OneToOne(() => User, {
     onDelete: "CASCADE",
   })
