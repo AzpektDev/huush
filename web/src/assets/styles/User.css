@@ -1,0 +1,16 @@
+/* User.css */
+.user-bar {
+    background-color: #000;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    width: 100%;
+}
+
+.user-name {
+    font-size: 18px;
+    color: #1eb980;
+    font-weight: bold;
+}

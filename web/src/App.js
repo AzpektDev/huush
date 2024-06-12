@@ -5,6 +5,7 @@ import Verify from './components/Auth/Verify';
 import Login from './components/Auth/Login';
 import Me from './components/Me/Me';
 import Home from './components/Home';
+import Chat from './components/Chat/chat';
 
 const App = () => {
     return (
@@ -14,7 +15,8 @@ const App = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/verify" element={<Verify />} />
-                <Route path="/me" element={<Me />} />
+                <Route path="/chat" element={<Me />} />
+                <Route path="/me" element={<Chat />} />
             </Routes>
         </Router>
     );

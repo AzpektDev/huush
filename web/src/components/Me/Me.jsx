@@ -27,6 +27,7 @@ const Me = () => {
             const response = await createChat(token);
             if (response.status !== 200) {
                 setError(response.message);
+                navigate('/me');
             } else {
                 console.log('Chat created successfully:', response.data.chat);
             }
