@@ -57,3 +57,27 @@ export const createChat = async (token) => {
     const data = await response.json();
     return data;
 };
+
+export const searchUser = async (username, token) => {
+    const response = await fetch(`https://huush-api.azpekt.dev/user/search?query=${username}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+    });
+    const data = await response.json();
+    return data;
+};
+
+export const getChats = async (token) => {
+    const response = await fetch(`https://huush-api.azpekt.dev/chat`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+    });
+    const data = await response.json();
+    return data;
+};

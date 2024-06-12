@@ -1,0 +1,51 @@
+/* Home.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000; /* Background color same as image */
+    font-family: Arial, sans-serif;
+}
+
+.home-container {
+    background-color: #1c1c1c; /* Dark background for the form */
+    border-radius: 10px;
+    padding: 40px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #fff; /* White text color */
+    width: 300px;
+}
+
+.home-container h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.home-container .tagline {
+    font-size: 14px;
+    margin-bottom: 30px;
+    color: #aaa;
+}
+
+.home-container .auth-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745; /* Green button */
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.home-container .auth-button:hover {
+    background-color: #218838;
+}

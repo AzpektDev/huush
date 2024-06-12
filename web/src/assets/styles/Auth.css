@@ -1,40 +1,61 @@
+/* Auth.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000; /* Background color same as image */
+    font-family: Arial, sans-serif;
+}
+
 .auth-container {
-    max-width: 400px;
-    margin: 0 auto;
+    background-color: #1E1E1E; /* Dark background for the form */
+    border-radius: 10px;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #fff; /* White text color */
+    width: 300px;
 }
 
 .auth-container h2 {
-    text-align: center;
     margin-bottom: 20px;
 }
 
 .auth-container form {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .auth-container label {
     margin-bottom: 10px;
+    width: 100%;
+    text-align: left;
 }
 
-.auth-container input {
+.auth-container input[type="text"],
+.auth-container input[type="password"] {
+    width: 100%;
     padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
 }
 
 .auth-container button {
+    width: 100%;
     padding: 10px;
-    background-color: #28a745;
-    color: white;
+    background-color: #28a745; /* Green button */
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
     cursor: pointer;
 }
 
@@ -43,6 +64,6 @@
 }
 
 .auth-container .error {
-    color: red;
-    text-align: center;
+    margin-top: 10px;
+    color: #ff0000; /* Red error message */
 }
