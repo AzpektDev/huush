@@ -26,6 +26,13 @@ router.get("/", Authorization, async (req: Request, res: Response) => {
     });
   }
 
+  user.forEach((u) => {
+    delete u.phone_verified;
+    delete u.token;
+    delete u.last_login;
+    delete u.role;
+  });
+
   res.json({
     message: "Successfully fetched user",
     code: 0,
