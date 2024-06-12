@@ -36,7 +36,7 @@ console.default(`Running Node.js ${process.version} on ${process.platform} ${pro
 
 console.info(`Starting in ${process.env.NODE_ENV || "development"} mode...`);
 
-const port = Number(process.env.PORT) || 3008;
+const port = Number(process.env.PORT) || 3009;
 const host = process.env.HOST || "localhost";
 
 console.log(`Worker ${process.pid} started`, "process", "red");
