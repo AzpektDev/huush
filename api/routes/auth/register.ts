@@ -64,6 +64,9 @@ router.post("/", async (req: Request, res: Response) => {
 
   await sendOTP(user.phone, onetimePassword);
 
+  delete user.password;
+  delete user.token;
+
   return res.status(200).send({
     message: "Successfully registered",
     code: 0,
