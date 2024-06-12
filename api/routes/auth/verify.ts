@@ -56,6 +56,14 @@ router.post("/", async (req: Request, res: Response) => {
     message: "Successfully verified",
     code: 0,
     status: 200,
+    data: {
+      user: {
+        id: user.id,
+        username: user.username,
+        role: user.role,
+        token: user.token,
+      }
+    }
   });
 });
 

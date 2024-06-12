@@ -1,8 +1,14 @@
 import bcrypt from "bcrypt";
 import { Request, Response, Router } from "express";
 import { User } from "../../entities/User";
+import { sendOTP } from "../../util/SMS";
+import { OTP } from "../../entities/OTP";
 
 const router: Router = Router();
+
+function generateOTP() {
+  return (Math.floor(100000 + Math.random() * 900000)).toString();
+}
 
 interface LoginSchema {
   username: string;
@@ -49,8 +55,19 @@ router.post("/", async (req: Request, res: Response) => {
   user.last_login = new Date();
   await user.save();
 
+  const onetimePassword = generateOTP();
+  await OTP.create({
+    user_id: user.id,
+    phone_number: user.phone,
+    otp: onetimePassword,
+    sent_at: new Date(),
+  }).save();
+
+  await sendOTP(user.phone, onetimePassword);
+
+
   res.send({
-    message: "Login successful",
+    message: "Login successful - verify OTP",
     code: 0,
     status: 200,
     data: {
@@ -58,7 +75,7 @@ router.post("/", async (req: Request, res: Response) => {
         id: user.id,
         username: user.username,
         role: user.role,
-        token: user.token,
+        // token: user.token,
       },
     }
   });
