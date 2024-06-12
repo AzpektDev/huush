@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { BeforeInsert, BeforeUpdate, Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, JoinColumn, Index } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { Snowflake } from "../util/Snowflake";
 import { BaseClass } from "./BaseClass";
 import { Message } from "./Message";
@@ -16,11 +16,14 @@ export class Chat extends BaseClass {
     onDelete: "CASCADE",
   })
   author?: User;
-    
-  @Column("text", { array: true })
-  participant_ids?: string[];  // Comma-separated list of user IDs
 
-  @OneToMany(() => Message, message => message.chat)
+  @Column()
+  name: string;
+
+  @Column("text", { array: true })
+  participant_ids?: string[]; // Comma-separated list of user IDs
+
+  @OneToMany(() => Message, (message) => message.chat)
   messages?: Message[];
 
   @Column()
@@ -32,17 +35,18 @@ export class Chat extends BaseClass {
     if (!this.id) this.id = Snowflake.generate();
   }
 
-  static async new({ participants, req }: { participants: string[]; req: Request }) {    
+  static async new({ participants, name, req }: { participants: string[]; name: string; req: Request }) {
     // const participantIds = participants.join(',');
 
     const chat = Chat.create({
       author_id: req.user.id,
+      name,
       participant_ids: participants,
       created_at: new Date(),
     });
 
     await chat.save();
 
-    return chat;  
+    return chat;
   }
 }
