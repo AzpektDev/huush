@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { verify } from '../../services/api';
-import './../../assets/styles/auth.css';
+import './../../assets/styles/Auth.css';
 
 const Verify = () => {
     const [code, setCode] = useState('');
