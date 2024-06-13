@@ -29,7 +29,6 @@ const Chat = () => {
       alert("Unauthorized!");
       return;
     }
-
     const response = await createChat(token);
     if (response.status === 200) {
       setChatMessages([...chatMessages, { content: message }]);
