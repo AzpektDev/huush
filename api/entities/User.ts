@@ -4,6 +4,7 @@ import { Snowflake } from "../util/Snowflake";
 import { trimSpecial } from "../util/String";
 import { BaseClass } from "./BaseClass";
 import { Chat } from "./Chat";
+import { PublicKeyStore } from "./PublicKeyStore";
 
 function getRandomString(length) {
   const randomChars = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789";
@@ -40,6 +41,9 @@ export class User extends BaseClass {
   // ref to chats
   @OneToMany(() => Chat, chat => chat.author)
   chats: Chat[];
+
+  @OneToMany(() => PublicKeyStore, publicKeyStore => publicKeyStore.user)
+  publicKeys: PublicKeyStore[];
 
   @Column()
   created_at: Date;

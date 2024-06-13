@@ -11,7 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-sns": "^3.592.0",
+    "@privacyresearch/libsignal-protocol-typescript": "^0.0.16",
     "@skyra/timestamp": "^1.0.0",
+    "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
