@@ -1,27 +1,46 @@
-/* ChatList.css */
 .chat-list {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .chat-list-header {
-    font-size: 18px;
-    font-weight: bold;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.chat-list input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #444;
+  color: #fff;
+  outline: none;
 }
 
 .chat-list-item {
-    padding: 10px;
-    margin-bottom: 5px;
-    background-color: #333;
-    color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 10px;
+  margin: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .chat-list-item:hover {
-    background-color: #555;
+  background-color: #555;
+}
+
+.chat-list-item-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.chat-list-item-last-message {
+  color: #ccc;
 }
