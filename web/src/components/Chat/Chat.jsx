@@ -9,7 +9,7 @@ const Chat = () => {
   const [chatMessages, setChatMessages] = useState([]);
   const [chats, setChats] = useState([]);
   const [selectedChat, setSelectedChat] = useState(null);
-  const [selectedChatName, setSelectedChatName] = useState(""); // Nowy stan
+  const [selectedChatName, setSelectedChatName] = useState("");
 
   useEffect(() => {
     const fetchChats = async () => {
@@ -32,11 +32,17 @@ const Chat = () => {
 
     const response = await createChat(token);
     if (response.status === 200) {
-      setChatMessages([...chatMessages, message]);
+      setChatMessages([...chatMessages, { content: message }]);
       setMessage("");
     } else {
       alert("Message sending failed!");
     }
+  };
+
+  const remove = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    window.location.reload();
   };
 
   const handleSelectChat = async (chatId) => {
@@ -50,16 +56,32 @@ const Chat = () => {
     }
   };
 
+  const handleSelectUser = async (userId, username) => {
+    const token = localStorage.getItem("token");
+    const response = await createChat(token, userId);
+    if (response.status === 200) {
+      const newChat = response.data.chat;
+      setChats([...chats, newChat]);
+      setSelectedChat(newChat.id);
+      setSelectedChatName(username);
+      const chatHistoryResponse = await getChatHistory(newChat.id, token);
+      if (chatHistoryResponse.status === 200) {
+        setChatMessages(chatHistoryResponse.data.messages);
+      }
+    }
+  };
+
   return (
     <div className="chat-page">
       <User />
       <div className="chat-container">
         <div className="chat-list-section">
-          <ChatList chats={chats} onSelectChat={handleSelectChat} />
+          <ChatList chats={chats} onSelectChat={handleSelectChat} onSelectUser={handleSelectUser} />
         </div>
         <div className="chat-main-section">
           <div className="chat-header">
-            <span className="chat-title">{selectedChatName ? `Rozmowa z ${selectedChatName}` : "Wybierz czat"}</span>
+            <span className="chat-title">{selectedChatName ? `Rozmowa z ${selectedChatName}` : "Wybierz czat lub użytkownika"}</span>
+            <button onClick={remove}>logOut</button>
           </div>
           <div className="chat-messages">
             {chatMessages.map((msg, index) => (

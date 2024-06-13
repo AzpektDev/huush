@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../services/api";
-import "./../../assets/styles/Auth.css"; // Importowanie pliku CSS
+import "./../../assets/styles/Auth.css"; 
 
 const Login = () => {
   const [username, setUsername] = useState("");

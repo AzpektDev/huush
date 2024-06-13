@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../services/api";
+import "./../../assets/styles/Auth.css";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -14,7 +15,7 @@ const Register = () => {
     try {
       const response = await register(username, password, phone);
       if (response.success) {
-        localStorage.setItem("username", username); 
+        localStorage.setItem("username", username);
         localStorage.setItem("token", response.data.user.token);
         navigate("/verify");
       } else {
@@ -26,10 +27,10 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className="auth-container">
       <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <label className="auth-label">
           Username:
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
         </label>
